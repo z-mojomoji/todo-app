@@ -1,1 +1,1 @@
-export * from "./PrivilegePage";
+export * from "./TodoPage";
