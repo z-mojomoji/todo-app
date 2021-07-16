@@ -1,22 +1,10 @@
-import { authenticationService } from "@/_services";
-
 export function authHeader() {
-  const currentUser = authenticationService.currentUserValue;
-  if (currentUser && currentUser.token) {
-    return { Authorization: `Bearer ${currentUser.token}` };
-  } else {
-    return {};
-  }
-}
+    // return authorization header with jwt token
+    let user = JSON.parse(localStorage.getItem('user'));
 
-export function authHeaderWithType() {
-  const currentUser = authenticationService.currentUserValue;
-  if (currentUser && currentUser.token) {
-    return {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${currentUser.token}`,
-    };
-  } else {
-    return {};
-  }
+    if (user && user.token) {
+        return { 'Authorization': 'Bearer ' + user.token };
+    } else {
+        return {};
+    }
 }

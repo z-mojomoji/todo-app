@@ -1,66 +1,44 @@
-import React from "react";
-import { Router, Route, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect } from 'react';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { history } from "@/_helpers";
-import { authenticationService } from "@/_services";
-import { PrivateRoute } from "@/_components";
-import { PrivilegePage } from "@/PrivilegePage";
-import { LoginPage } from "@/LoginPage";
+import { history } from '../_helpers';
+import { alertActions } from '../_actions';
+import { PrivateRoute } from '../_components';
+import { HomePage } from '../HomePage';
+import { LoginPage } from '../LoginPage';
+import { RegisterPage } from '../RegisterPage';
 
-import logoLight from "../_assets/images/logo_light.svg";
-import pointImg from "../_assets/images/Points-2x.png";
+function App() {
+    const alert = useSelector(state => state.alert);
+    const dispatch = useDispatch();
 
-import "./App.scss";
+    useEffect(() => {
+        history.listen((location, action) => {
+            // clear alert on location change
+            dispatch(alertActions.clear());
+        });
+    }, []);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentUser: null,
-    };
-  }
-
-  componentDidMount() {
-    authenticationService.currentUser.subscribe((x) =>
-      this.setState({ currentUser: x })
-    );
-  }
-
-  logout() {
-    authenticationService.logout();
-    history.push("/login");
-  }
-
-  render() {
-    const { currentUser } = this.state;
     return (
-      <Router history={history}>
-        <ToastContainer position="top-center" />
-        <>
-          {currentUser && (
-            <nav className="NavigationBar">
-              <Link to="/" className="NavigationBar__logo">
-                <img src={logoLight} alt="Feyverly" />
-              </Link>
-              <div className="NavigationBar__point">
-                <img src={pointImg} alt="point" />
-                <span className="NavigationBar__text">{currentUser.point}</span>
-              </div>
-            </nav>
-          )}
-          <div className="BodyContainer">
-            <div className="BodyContainer__content">
-              <PrivateRoute exact path="/" component={PrivilegePage} />
-              <Route path="/login" component={LoginPage} />
+        <div className="jumbotron">
+            <div className="container">
+                <div className="col-md-8 offset-md-2">
+                    {alert.message &&
+                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                    }
+                    <Router history={history}>
+                        <Switch>
+                            <PrivateRoute exact path="/" component={HomePage} />
+                            <Route path="/login" component={LoginPage} />
+                            <Route path="/register" component={RegisterPage} />
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </Router>
+                </div>
             </div>
-          </div>
-        </>
-      </Router>
+        </div>
     );
-  }
 }
 
 export { App };
