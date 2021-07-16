@@ -1,0 +1,109 @@
+.Privilege {
+    position: relative;
+    padding: 16px 16px 80px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &__couponImg {
+        max-width: 363px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+
+        div {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            padding: 6px 0;
+            box-sizing: border-box;
+
+            .point {
+                font-weight: 600;
+                font-size: 15px;
+                margin: 0;
+            }
+
+            .text {
+                font-size: 10px;
+                margin: 0;
+            }
+        }
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        margin: 4px 0;
+        line-height: 1;
+        font-weight: 800;
+    }
+
+    &__expire {
+        font-size: 1.2rem;
+        margin: 4px 0;
+        line-height: 1;
+        font-weight: 600;
+        color: #858585;
+
+        span {
+            color: #ff4949;
+        }
+    }
+
+    &__seperator {
+        height: 1px;
+        background-color: #e5e5e5;
+        border: none;
+        margin: 18px 0;
+    }
+
+    &__condition {
+        font-size: 1.2rem;
+        margin: 4px 0;
+        line-height: 1;
+        font-weight: 800;
+
+        &List {
+            margin: 10px 0;
+            font-size: 1.2rem;
+
+            &Item {
+                position: relative;
+                padding-left: 15px;
+                margin: 5px 0;
+                line-height: 1.1;
+
+                &::before {
+                    content: "-";
+                    position: absolute;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &__button {
+        font-family: "ThaiSansNeue", sans-serif;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: black;
+        color: white;
+        padding: 18px;
+        outline: 0;
+        border: 0;
+        font-weight: 800;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+}

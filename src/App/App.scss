@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "ThaiSansNeue";
+  src:
+    url("../_assets/fonts/ThaiSansNeue-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ThaiSansNeue";
+  src:
+    url("../_assets/fonts/ThaiSansNeue-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ThaiSansNeue";
+  src:
+    url("../_assets/fonts/ThaiSansNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ThaiSansNeue";
+  src:
+    url("../_assets/fonts/ThaiSansNeue-Light.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+.NavigationBar {
+  background: black;
+  padding: 18px 24px;
+  position: relative;
+  color: white;
+
+  &__logo,
+  &__point {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__logo {
+    line-height: 0;
+
+    img {
+      height: 22px;
+    }
+  }
+
+  &__point {
+    float: right;
+
+    img,
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    img {
+      width: 13px;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 0.7;
+  }
+
+
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+    font-size: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.BodyContainer {
+  &__content {
+    width: 100%;
+  }
+
+  &--fixed {
+    overflow: hidden;
+  }
+}
