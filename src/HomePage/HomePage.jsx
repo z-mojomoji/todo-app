@@ -6,7 +6,6 @@ import { todoActions } from '../_actions';
 
 function HomePage() {
     const todos = useSelector(state => state.todos.items);
-    // const user = useSelector(state => state.authentication.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +14,6 @@ function HomePage() {
 
     function handleDeleteTodo(id) {
         dispatch(todoActions.removeTodo(id));
-        // window.location.reload();
     }
 
     return todos ? (
@@ -35,18 +33,6 @@ function HomePage() {
             </ul>
             <p>You're logged in with React Hooks!!</p>
             <h3>All registered todos:</h3>
-           
-            {/* {todos.error && <span className="text-danger">ERROR: {todos.error}</span>} */}
-            {/* {todos &&
-                <ul>
-                    {todos.map((todo, index) =>
-                        <li key={todo.id}>
-                            {user.firstName + ' ' + user.lastName}
-                            
-                        </li>
-                    )}
-                </ul>
-            } */}
             <p>
                 <Link to="/login">Logout</Link>
             </p>

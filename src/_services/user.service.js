@@ -5,7 +5,7 @@ export const userService = {
   login,
   logout,
   //   register,
-  getAll,
+  //   getAll,
   //   getById,
   //   update,
   //   delete: _delete,
@@ -33,14 +33,14 @@ function logout() {
   localStorage.removeItem("user");
 }
 
-function getAll() {
-  const requestOptions = {
-    method: "GET",
-    headers: authHeader(),
-  };
+// function getAll() {
+//   const requestOptions = {
+//     method: "GET",
+//     headers: authHeader(),
+//   };
 
-  return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
-}
+//   return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
+// }
 
 // function getById(id) {
 //     const requestOptions = {

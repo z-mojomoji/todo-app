@@ -40,7 +40,6 @@ function editTodo(todo) {
   );
 }
 
-// // prefixed function name with underscore because delete is a reserved word in javascript
 function removeTodo(id) {
   const requestOptions = {
     method: "DELETE",
