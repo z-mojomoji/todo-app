@@ -5,7 +5,7 @@ export const userService = {
   login,
   logout,
   //   register,
-  //   getAll,
+  // getAll,
   //   getById,
   //   update,
   //   delete: _delete,
@@ -22,9 +22,15 @@ function login(username, password) {
     .then(handleResponse)
     .then((user) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem("user", JSON.stringify(user));
-
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
       return user;
+    })
+    .catch((error) => {
+      history.push("/login");
+      localStorage.removeItem("user");
+      console.log(error);
     });
 }
 
