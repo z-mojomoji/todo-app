@@ -48,7 +48,7 @@ module.exports = {
   },
   externals: {
     config: JSON.stringify({
-      apiUrl: "http://203.151.213.133/testfeyverly/api/V1",
+      apiUrl: "https://candidate.neversitup.com/todo",
     }),
   },
 };
