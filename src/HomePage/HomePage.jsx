@@ -2,38 +2,47 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { userActions } from '../_actions';
+import { todoActions } from '../_actions';
 
 function HomePage() {
-    // const users = useSelector(state => state.users);
-    const user = useSelector(state => state.authentication.user);
+    const todos = useSelector(state => state.todos.items);
+    // const user = useSelector(state => state.authentication.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(userActions.getAll());
+        dispatch(todoActions.getTodoList());
     }, []);
 
-    // function handleDeleteUser(id) {
-    //     dispatch(userActions.delete(id));
-    // }
+    function handleDeleteTodo(id) {
+        dispatch(todoActions.removeTodo(id));
+        // window.location.reload();
+    }
 
-    return (
+    return todos ? (
         <div className="col-lg-8 offset-lg-2">
-            <h1>Hi {user.token}!</h1>
+            <ul>
+                {todos.map((todo) =>
+                    <li key={todo._id}>
+                        {todo.title}
+                        {todo.description}
+                        {
+                            todo.deleting ? <em> - Deleting...</em>
+                            : todo.deleteError ? <span className="text-danger"> - ERROR: {todo.deleteError}</span>
+                            : <span> - <a onClick={() => handleDeleteTodo(todo._id)} className="text-primary">Delete</a></span>
+                        }
+                    </li>
+                )}
+            </ul>
             <p>You're logged in with React Hooks!!</p>
-            <h3>All registered users:</h3>
-            {/* {users.loading && <em>Loading users...</em>}
-            {users.error && <span className="text-danger">ERROR: {users.error}</span>}
-            {users.items &&
+            <h3>All registered todos:</h3>
+           
+            {/* {todos.error && <span className="text-danger">ERROR: {todos.error}</span>} */}
+            {/* {todos &&
                 <ul>
-                    {users.items.map((user, index) =>
-                        <li key={user.id}>
+                    {todos.map((todo, index) =>
+                        <li key={todo.id}>
                             {user.firstName + ' ' + user.lastName}
-                            {
-                                user.deleting ? <em> - Deleting...</em>
-                                : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                : <span> - <a onClick={() => handleDeleteUser(user.id)} className="text-primary">Delete</a></span>
-                            }
+                            
                         </li>
                     )}
                 </ul>
@@ -42,6 +51,8 @@ function HomePage() {
                 <Link to="/login">Logout</Link>
             </p>
         </div>
+    ) : (
+        <></>
     );
 }
 
