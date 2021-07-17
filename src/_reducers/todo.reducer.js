@@ -14,8 +14,16 @@ export function todos(state = {}, action) {
       return {
         error: action.error,
       };
+    // Add todo
+    case todoConstants.ADD_REQUEST:
+      return {};
+    case todoConstants.ADD_SUCCESS:
+      return {};
+    case todoConstants.ADD_FAILURE:
+      return {};
+
+    // Delete todo
     case todoConstants.DELETE_REQUEST:
-      // add 'deleting:true' property to user being deleted
       return {
         ...state,
         items: state.items.map((todo) =>
@@ -23,12 +31,10 @@ export function todos(state = {}, action) {
         ),
       };
     case todoConstants.DELETE_SUCCESS:
-      // remove deleted user from state
       return {
         items: state.items.filter((todo) => todo.id !== action.id),
       };
     case todoConstants.DELETE_FAILURE:
-      // remove 'deleting:true' property and add 'deleteError:[error]' property to user
       return {
         ...state,
         items: state.items.map((todo) => {

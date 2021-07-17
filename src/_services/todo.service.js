@@ -3,8 +3,8 @@ import { authHeader, handleResponse } from "../_helpers";
 
 export const todoService = {
   getTodoList,
-  getTodoById,
   editTodo,
+  addTodo,
   removeTodo,
 };
 
@@ -17,15 +17,14 @@ function getTodoList() {
   return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
 }
 
-function getTodoById(id) {
+function addTodo(title, description) {
   const requestOptions = {
-    method: "GET",
-    headers: authHeader(),
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify({ title, description }),
   };
 
-  return fetch(`${config.apiUrl}/todos/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
 }
 
 function editTodo(todo) {

@@ -1,1 +1,2 @@
-export * from './PrivateRoute';
+export * from "./PrivateRoute";
+export * from "./Modal/Modal";

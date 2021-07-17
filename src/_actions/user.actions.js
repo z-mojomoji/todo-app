@@ -17,7 +17,6 @@ function login(username, password, from) {
 
     userService.login(username, password).then(
       (user) => {
-        console.log("come into then");
         dispatch(success(user));
         history.push(from);
       },

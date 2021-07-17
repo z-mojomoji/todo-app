@@ -1,0 +1,48 @@
+.Modal {
+  position: fixed;
+  z-index: 100;
+  outline: 0;
+  width: 100%;
+  overflow: hidden;
+
+  &__container {
+    position: fixed;
+    z-index: 300;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 85vh;
+    width: 85%;
+    background: #181822;
+    padding: 30px 2% 16px;
+    border-radius: 15px;
+    overflow: scroll;
+  }
+
+  &__logo {
+    margin: 0 auto;
+    display: block;
+    width: 120px;
+  }
+
+  &__close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    border: none;
+    background: transparent;
+    outline: 0;
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    overflow: hidden;
+    outline: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}

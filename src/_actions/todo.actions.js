@@ -3,6 +3,7 @@ import { todoService } from "../_services";
 
 export const todoActions = {
   getTodoList,
+  addTodo,
   removeTodo,
 };
 
@@ -27,12 +28,38 @@ function getTodoList() {
   }
 }
 
+function addTodo(title, description) {
+  return (dispatch) => {
+    dispatch(request(title));
+
+    todoService.addTodo(title, description).then(
+      (title) => {
+        dispatch(success(title));
+        window.location.reload();
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+  function request(title) {
+    return { type: todoConstants.ADD_REQUEST, title };
+  }
+  function success(title) {
+    return { type: todoConstants.ADD_SUCCESS, title };
+  }
+  function failure(error) {
+    return { type: todoConstants.ADD_FAILURE, error };
+  }
+}
+
 function removeTodo(id) {
   return (dispatch) => {
     dispatch(request(id));
 
     todoService.removeTodo(id).then(
-      (todo) => dispatch(success(id)),
+      (todo) => {
+        dispatch(success(todo._id));
+        window.location.reload();
+      },
       (error) => dispatch(failure(id, error.toString()))
     );
   };

@@ -7,13 +7,6 @@ import * as Yup from "yup";
 import { userActions } from '../_actions';
 
 function LoginPage() {
-    // const [inputs, setInputs] = useState({
-    //     username: '',
-    //     password: ''
-    // });
-    // const [submitted, setSubmitted] = useState(false);
-    // const { username, password } = inputs;
-    // const loggingIn = useSelector(state => state.authentication.loggingIn);
     const dispatch = useDispatch();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
@@ -22,11 +15,6 @@ function LoginPage() {
     useEffect(() => { 
         dispatch(userActions.logout()); 
     }, []);
-
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setInputs(inputs => ({ ...inputs, [name]: value }));
-    }
 
     return (
         <div className="col-lg-8 offset-lg-2">
