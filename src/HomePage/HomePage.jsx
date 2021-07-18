@@ -47,7 +47,7 @@ function HomePage() {
             }}
             render={({ isSubmitting }) => (
               <Form>
-                <div className="LoginForm__group">
+                <div className="AddTodoForm__group">
                   <label htmlFor="title" className="visually-hidden">
                     Title
                   </label>
@@ -55,10 +55,10 @@ function HomePage() {
                     name="title"
                     type="text"
                     placeholder="Title"
-                    className="LoginForm__control"
+                    className="AddTodoForm__control"
                   />
                 </div>
-                <div className="LoginForm__group">
+                <div className="AddTodoForm__group">
                   <label htmlFor="description" className="visually-hidden">
                     Description
                   </label>
@@ -66,13 +66,14 @@ function HomePage() {
                     name="description"
                     type="text"
                     placeholder="Description"
-                    className="LoginForm__control"
+                    className="AddTodoForm__control"
+                    as="textarea"
                   />
                 </div>
-                <div className="LoginForm__group">
+                <div className="AddTodoForm__group">
                   <button
                     type="submit"
-                    className="LoginForm__button"
+                    className="AddTodoForm__button"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
