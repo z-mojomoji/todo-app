@@ -65,21 +65,15 @@ function editTodo(id, title, description) {
     );
   };
   function request(id) {
-    console.log("request ");
-    console.log(title);
     return { type: todoConstants.EDIT_REQUEST, id };
   }
   function success(id) {
-    console.log("success ");
-    console.log(title);
     return { type: todoConstants.EDIT_SUCCESS, id };
   }
   function failure(error) {
-    console.log("failure " + error);
     return { type: todoConstants.EDIT_FAILURE, error };
   }
 }
-
 
 function removeTodo(id) {
   return (dispatch) => {

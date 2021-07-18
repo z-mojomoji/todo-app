@@ -31,7 +31,6 @@ function login(username, password, from) {
     return { type: userConstants.LOGIN_SUCCESS, user };
   }
   function failure(error) {
-    console.log("failure function");
     return { type: userConstants.LOGIN_FAILURE, error };
   }
 }
