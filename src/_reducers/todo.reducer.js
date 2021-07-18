@@ -14,12 +14,21 @@ export function todos(state = {}, action) {
       return {
         error: action.error,
       };
+      
     // Add todo
     case todoConstants.ADD_REQUEST:
       return {};
     case todoConstants.ADD_SUCCESS:
       return {};
     case todoConstants.ADD_FAILURE:
+      return {};
+
+    // Edit todo
+    case todoConstants.EDIT_REQUEST:
+      return {};
+    case todoConstants.EDIT_SUCCESS:
+      return {};
+    case todoConstants.EDIT_FAILURE:
       return {};
 
     // Delete todo

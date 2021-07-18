@@ -4,6 +4,7 @@ import { todoService } from "../_services";
 export const todoActions = {
   getTodoList,
   addTodo,
+  editTodo,
   removeTodo,
 };
 
@@ -50,6 +51,35 @@ function addTodo(title, description) {
     return { type: todoConstants.ADD_FAILURE, error };
   }
 }
+
+function editTodo(id, title, description) {
+  return (dispatch) => {
+    dispatch(request(title));
+
+    todoService.editTodo(id, title, description).then(
+      (title) => {
+        dispatch(success(title));
+        window.location.reload();
+      },
+      (error) => dispatch(failure(error.toString()))
+    );
+  };
+  function request(id) {
+    console.log("request ");
+    console.log(title);
+    return { type: todoConstants.EDIT_REQUEST, id };
+  }
+  function success(id) {
+    console.log("success ");
+    console.log(title);
+    return { type: todoConstants.EDIT_SUCCESS, id };
+  }
+  function failure(error) {
+    console.log("failure " + error);
+    return { type: todoConstants.EDIT_FAILURE, error };
+  }
+}
+
 
 function removeTodo(id) {
   return (dispatch) => {

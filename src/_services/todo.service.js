@@ -27,14 +27,18 @@ function addTodo(title, description) {
   return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
 }
 
-function editTodo(todo) {
+function editTodo(id, title, description) {
+  const data = {
+    title: title,
+    description: description
+  }
   const requestOptions = {
     method: "PUT",
     headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(todo),
+    body: JSON.stringify(data),
   };
 
-  return fetch(`${config.apiUrl}/todos/${todo.id}`, requestOptions).then(
+  return fetch(`${config.apiUrl}/todos/${id}`, requestOptions).then(
     handleResponse
   );
 }

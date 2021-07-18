@@ -7,12 +7,7 @@ import "./EditTodoModal.scss";
 
 function EditTodoModal(props) {
   const { id, title, description } = props;
-  // const todo = useSelector(state => state.todo);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //     dispatch(todoActions.getTodoById(data));
-  // }, []);
+  const dispatch = useDispatch();
 
 
   return id ? (
@@ -32,15 +27,17 @@ function EditTodoModal(props) {
               { setStatus, setSubmitting }
             ) => {
               setStatus();
-              // dispatch(todoActions.editTodo(id, title, description)).then(
-              //   (error) => {
-              //     setSubmitting(false);
-              //     setStatus(error);
-              //   }
-              // );
+              dispatch(todoActions.editTodo(id, title, description)).then(
+                (e) => e.preventDefault(),
+                (error) => {
+                  setSubmitting(false);
+                  setStatus(error);
+                }
+              );
             }}
-            render={({ errors, status, touched, isSubmitting }) => (
+            render={({ isSubmitting }) => (
               <Form>
+                <Field type="hidden" className="LoginForm__control" name="id" /> 
                 <div className="LoginForm__group">
                   <label htmlFor="title" className="visually-hidden">
                     Title
@@ -48,7 +45,7 @@ function EditTodoModal(props) {
                   <Field
                     name="title"
                     type="text"
-                    placeholder="บัญชีผู้ใช้"
+                    placeholder="Title"
                     className="LoginForm__control"
                   />
                 </div>
@@ -58,8 +55,8 @@ function EditTodoModal(props) {
                   </label>
                   <Field
                     name="description"
-                    type="description"
-                    placeholder="รหัสผ่าน"
+                    type="text"
+                    placeholder="Description"
                     className="LoginForm__control"
                   />
                 </div>
@@ -72,7 +69,7 @@ function EditTodoModal(props) {
                     {isSubmitting ? (
                       <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     ) : (
-                      "Edit Todo"
+                      "Add Todo"
                     )}
                   </button>
                 </div>
