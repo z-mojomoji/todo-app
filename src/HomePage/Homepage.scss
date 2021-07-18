@@ -1,3 +1,72 @@
-.AddTodoForm {
-    
+.HomePage{
+    &__addTodo {
+        &Button {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-40%);
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+        }
+
+        &Icon {
+            position: absolute;
+            width: 26px;
+            top: calc(50% - 13px);
+            left: calc(50% - 13px);
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.TodoCard {
+    background: white;
+    margin: 20px auto;
+    padding: 12px 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    &__label {
+        font-size: 10px;
+        color: #d0d4dd;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    &__title {
+        font-size: 16px;
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    };
+
+    &__description {
+        display: block;
+    }
+
+
+    &__button {
+        &Section {
+            padding-top: 30px;
+            text-align: right;
+        }
+
+        &Text {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 15px;
+        }
+
+        &Icon {
+            width: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        &--delete {
+            color: #c10c0c;
+        }
+    }
 }

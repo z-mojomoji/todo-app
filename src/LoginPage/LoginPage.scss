@@ -1,0 +1,11 @@
+.LoginPage {
+  padding: 25% 10px;
+  box-sizing: border-box;
+
+  &__title {
+    position: relative;
+    text-align: center;
+    margin-top: 0;
+    z-index: 1;
+  }
+}

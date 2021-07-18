@@ -8,6 +8,7 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 // import { RegisterPage } from '../RegisterPage';
+import './App.scss';
 
 function App() {
     const alert = useSelector(state => state.alert);
@@ -21,21 +22,17 @@ function App() {
     }, []);
 
     return (
-        <div className="jumbotron">
-            <div className="container">
-                <div className="col-md-8 offset-md-2">
-                    {alert.message &&
-                        <div className={`alert ${alert.type}`}>{alert.message}</div>
-                    }
-                    <Router history={history}>
-                        <Switch>
-                            <PrivateRoute exact path="/" component={HomePage} />
-                            <Route path="/login" component={LoginPage} />
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </Router>
-                </div>
-            </div>
+        <div className="App">
+            {alert.message &&
+                <div className={`alert ${alert.type}`}>{alert.message}</div>
+            }
+            <Router history={history}>
+                <Switch>
+                    <PrivateRoute exact path="/" component={HomePage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Redirect from="*" to="/" />
+                </Switch>
+            </Router>
         </div>
     );
 }

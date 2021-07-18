@@ -13,10 +13,12 @@
     transform: translate(-50%, -50%);
     max-height: 85vh;
     width: 85%;
-    background: #181822;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,245,252,1) 100%);
     padding: 30px 2% 16px;
-    border-radius: 15px;
-    overflow: scroll;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
   &__logo {
@@ -27,8 +29,8 @@
 
   &__close {
     position: absolute;
-    right: 6px;
-    top: 6px;
+    right: 0;
+    top: -35px;
     border: none;
     background: transparent;
     outline: 0;
@@ -43,6 +45,6 @@
     z-index: 200;
     overflow: hidden;
     outline: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(133, 144, 170, 0.7);
   }
 }
