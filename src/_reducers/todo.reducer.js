@@ -14,7 +14,7 @@ export function todos(state = {}, action) {
       return {
         error: action.error,
       };
-      
+
     // Add todo
     case todoConstants.ADD_REQUEST:
       return {};
@@ -48,9 +48,7 @@ export function todos(state = {}, action) {
         ...state,
         items: state.items.map((todo) => {
           if (todo.id === action.id) {
-            // make copy of user without 'deleting:true' property
             const { deleting, ...todoCopy } = todo;
-            // return copy of user with 'deleteError:[error]' property
             return { ...todoCopy, deleteError: action.error };
           }
 

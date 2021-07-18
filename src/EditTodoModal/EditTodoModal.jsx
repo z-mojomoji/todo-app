@@ -77,7 +77,7 @@ function EditTodoModal(props) {
       </div>
     </div>
   ) : (
-    <>Helo</>
+    <>Sorry there's nothing to render</>
   );
 }
 

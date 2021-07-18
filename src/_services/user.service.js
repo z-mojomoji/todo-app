@@ -4,11 +4,6 @@ import { authHeader, handleResponse } from "../_helpers";
 export const userService = {
   login,
   logout,
-  //   register,
-  // getAll,
-  //   getById,
-  //   update,
-  //   delete: _delete,
 };
 
 function login(username, password) {
@@ -21,7 +16,6 @@ function login(username, password) {
   return fetch(`${config.apiUrl}/users/auth`, requestOptions)
     .then(handleResponse)
     .then((user) => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
       }
@@ -30,63 +24,9 @@ function login(username, password) {
     .catch((error) => {
       history.push("/login");
       localStorage.removeItem("user");
-      console.log(error);
     });
 }
 
 function logout() {
-  // remove user from local storage to log user out
   localStorage.removeItem("user");
 }
-
-// function getAll() {
-//   const requestOptions = {
-//     method: "GET",
-//     headers: authHeader(),
-//   };
-
-//   return fetch(`${config.apiUrl}/todos`, requestOptions).then(handleResponse);
-// }
-
-// function getById(id) {
-//     const requestOptions = {
-//         method: 'GET',
-//         headers: authHeader()
-//     };
-
-//     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-// }
-
-// function register(user) {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
-//     };
-
-//     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
-// }
-
-// function update(user) {
-//   const requestOptions = {
-//     method: "PUT",
-//     headers: { ...authHeader(), "Content-Type": "application/json" },
-//     body: JSON.stringify(user),
-//   };
-
-//   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(
-//     handleResponse
-//   );
-// }
-
-// // prefixed function name with underscore because delete is a reserved word in javascript
-// function _delete(id) {
-//   const requestOptions = {
-//     method: "DELETE",
-//     headers: authHeader(),
-//   };
-
-//   return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
-//     handleResponse
-//   );
-// }

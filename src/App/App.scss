@@ -108,6 +108,8 @@
   right: -80vw;
   background: rgb(255,255,255);
   background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,245,252,1) 100%);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
   transition: 0.5s;
   border-radius: 10px 0 0 10px;
 
@@ -170,10 +172,9 @@
     line-height: 50px;
   }
 
-  &--full{
+  &--full {
     width: 100%;
     font-weight: bold;
     font-size: 1.2rem;
   }
-
 }

@@ -13,7 +13,6 @@ function LoginPage() {
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
 
-  // reset login status
   useEffect(() => {
     dispatch(userActions.logout());
   }, []);
