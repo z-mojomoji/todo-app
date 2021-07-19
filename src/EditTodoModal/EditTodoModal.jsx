@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 import { todoActions } from "../_actions";
 import "./EditTodoModal.scss";
@@ -19,6 +20,9 @@ function EditTodoModal(props) {
             title: title,
             description: description,
           }}
+          validationSchema={Yup.object().shape({
+            title: Yup.string().required("Title is required"),
+          })}
           onSubmit={(
             { id, title, description },
             { setStatus, setSubmitting }
@@ -32,7 +36,7 @@ function EditTodoModal(props) {
               }
             );
           }}
-          render={({ isSubmitting }) => (
+          render={({ errors, status, touched, isSubmitting }) => (
             <Form>
               <Field type="hidden" className="FormControl__control" name="id" />
               <div className="FormControl__group">
@@ -43,7 +47,17 @@ function EditTodoModal(props) {
                   name="title"
                   type="text"
                   placeholder="Title"
-                  className="FormControl__control"
+                  className={
+                    "FormControl__control" +
+                    (errors.title && touched.title
+                      ? " FormControl--invalid"
+                      : "")
+                  }
+                />
+                <ErrorMessage
+                  name="title"
+                  component="div"
+                  className="FormControl--invalidFeedback"
                 />
               </div>
               <div className="FormControl__group">
@@ -71,6 +85,7 @@ function EditTodoModal(props) {
                   )}
                 </button>
               </div>
+              {status && <div className={"alert alert-danger"}>{status}</div>}
             </Form>
           )}
         />

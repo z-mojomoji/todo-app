@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "@/_components";
 import { EditTodoModal } from "@/EditTodoModal";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 import { todoActions } from "../_actions";
 
@@ -118,6 +119,9 @@ function HomePage() {
                 title: "",
                 description: "",
               }}
+              validationSchema={Yup.object().shape({
+                title: Yup.string().required("Title is required"),
+              })}
               onSubmit={(
                 { title, description },
                 { setStatus, setSubmitting }
@@ -131,7 +135,7 @@ function HomePage() {
                   }
                 );
               }}
-              render={({ isSubmitting }) => (
+              render={({ errors, status, touched, isSubmitting }) => (
                 <Form>
                   <div className="FormControl__group">
                     <label htmlFor="title" className="FormControl__label">
@@ -141,7 +145,17 @@ function HomePage() {
                       name="title"
                       type="text"
                       placeholder="Title"
-                      className="FormControl__control"
+                      className={
+                        "FormControl__control" +
+                        (errors.title && touched.title
+                          ? " FormControl--invalid"
+                          : "")
+                      }
+                    />
+                    <ErrorMessage
+                      name="title"
+                      component="div"
+                      className="FormControl--invalidFeedback"
                     />
                   </div>
                   <div className="FormControl__group">
@@ -169,6 +183,7 @@ function HomePage() {
                       )}
                     </button>
                   </div>
+              {status && <div className={"alert alert-danger"}>{status}</div>}
                 </Form>
               )}
             />
